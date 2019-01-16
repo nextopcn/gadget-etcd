@@ -69,8 +69,8 @@ Client client = builder.build("my client");
 KV kv = client.getKV();
 
 PutRequest.Builder request = PutRequest.newBuilder();
-builder.setKey(ByteString.copyFrom("key".getBytes()));
-builder.setValue(ByteString.copyFrom("value".getBytes()));
+request.setKey(ByteString.copyFrom("key".getBytes()));
+request.setValue(ByteString.copyFrom("value".getBytes()));
 		
 CompletableFuture<PutResponse> future = kv.put(request.build());
 // your code goes here. 
