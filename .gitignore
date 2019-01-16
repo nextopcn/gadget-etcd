@@ -1,0 +1,15 @@
+log
+data
+*.iml
+.idea
+target
+.project
+.settings
+.classpath
+.DS_Store
+.springBeans
+APP_HOME_IS_UNDEFINED
+*.snapshot
+*.journal
+~$*.xls*
+.factorypath
