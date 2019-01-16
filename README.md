@@ -17,7 +17,6 @@ Table of Contents([中文说明](./README.zh_CN.md))
 [![Build Status](https://travis-ci.org/nextopcn/gedget-etcd.svg?branch=master)](https://travis-ci.org/nextopcn/gedget-etcd)
 [![Coverage Status](https://coveralls.io/repos/github/nextopcn/gedget-etcd/badge.svg?branch=master)](https://coveralls.io/github/nextopcn/gedget-etcd?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gedget-etcd/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gedget-etcd)
-[![Javadocs](http://www.javadoc.io/badge/cn.nextop/gedget-etcd.svg)](http://www.javadoc.io/doc/cn.nextop/gedget-etcd)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](https://github.com/nextopcn/gedget-etcd/blob/master/LICENSE)  
   
 An etcd v3 client written by Java.  
