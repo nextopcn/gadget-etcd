@@ -250,7 +250,7 @@
                         <configuration>
                             <archive combine.children="append">
                                 <manifestEntries>
-                                    <Automatic-Module-Name>cn.nextop.lite.pool</Automatic-Module-Name>
+                                    <Automatic-Module-Name>cn.nextop.gadget.etcd</Automatic-Module-Name>
                                 </manifestEntries>
                             </archive>
                         </configuration>
@@ -338,7 +338,7 @@
                 <configuration>
                     <archive combine.children="append">
                         <manifestEntries>
-                            <Automatic-Module-Name>cn.nextop.lite.pool</Automatic-Module-Name>
+                            <Automatic-Module-Name>cn.nextop.gadget.etcd</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
