@@ -14,10 +14,10 @@
 
 # 1. Gadget-etcd  
 ## 1.1. Brief introduction  
-[![Build Status](https://travis-ci.org/nextopcn/gedget-etcd.svg?branch=master)](https://travis-ci.org/nextopcn/gedget-etcd)
-[![Coverage Status](https://coveralls.io/repos/github/nextopcn/gedget-etcd/badge.svg?branch=master)](https://coveralls.io/github/nextopcn/gedget-etcd?branch=master)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gedget-etcd/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gedget-etcd)
-[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](https://github.com/nextopcn/gedget-etcd/blob/master/LICENSE)  
+[![Build Status](https://travis-ci.org/nextopcn/gadget-etcd.svg?branch=master)](https://travis-ci.org/nextopcn/gadget-etcd)
+[![Coverage Status](https://coveralls.io/repos/github/nextopcn/gadget-etcd/badge.svg?branch=master)](https://coveralls.io/github/nextopcn/gadget-etcd?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gadget-etcd/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.nextop/gadget-etcd)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](https://github.com/nextopcn/gadget-etcd/blob/master/LICENSE)  
   
 Java实现的etcd v3客户端.  
 
@@ -30,7 +30,7 @@ maven-3.3.1+
 ```xml  
     <dependency>
         <groupId>cn.nextop</groupId>
-        <artifactId>gedget-etcd</artifactId>
+        <artifactId>gadget-etcd</artifactId>
         <version>1.0.0-RC1</version>
     </dependency>
 ```
