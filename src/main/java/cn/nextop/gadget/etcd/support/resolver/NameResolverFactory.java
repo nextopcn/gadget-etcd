@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import cn.nextop.gadget.etcd.EtcdException;
 import cn.nextop.gadget.etcd.support.resolver.impl.SmartNameResolver;
@@ -21,12 +22,14 @@ public class NameResolverFactory extends NameResolver.Factory {
 	//
 	private final String[] uris;
 	private NameResolver.Listener listener;
-	
+	private final List<URIResolver> resolvers;
+
 	/**
 	 * 
 	 */
 	public NameResolverFactory(String[] uris) {
 		this.uris = uris;
+		this.resolvers = new CopyOnWriteArrayList<>();
 	}
 	
 	/**
@@ -36,6 +39,14 @@ public class NameResolverFactory extends NameResolver.Factory {
 	public String getDefaultScheme() {
 		return ETCD;
 	}
+
+	public void addResolver(URIResolver r) {
+		this.resolvers.add(r);
+	}
+
+	public void delResolver(URIResolver r) {
+		this.resolvers.remove(r);
+	}
 	
 	public NameResolver.Listener getListener() {
 		return listener;
@@ -44,13 +55,14 @@ public class NameResolverFactory extends NameResolver.Factory {
 	public void setListener(NameResolver.Listener listener) {
 		this.listener = listener;
 	}
-	
+
 	@Override
 	public NameResolver newNameResolver(URI uri, Attributes attributes) {
 		if (!ETCD.equals(uri.getScheme())) return null;
-		List<URI> list = stream(this.uris).map(this::uri).collect(toList());
-		SmartNameResolver r = new SmartNameResolver(ETCD, list); /* smart */
-		if (this.listener != null) r.addListener(this.listener); return (r);
+		final List<URI> list = stream(this.uris).map(this::uri).collect(toList());
+		final SmartNameResolver r = new SmartNameResolver(ETCD, list); /* smart */
+		if((listener != null)) r.addListener(listener); r.addResolvers(resolvers);
+		return r;
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import cn.nextop.gadget.etcd.EtcdException;
 import cn.nextop.gadget.etcd.support.resolver.URIResolver;
@@ -20,15 +21,24 @@ import io.grpc.Status;
  */
 public class SmartNameResolver extends AbstractNameResolver {
 	//
-	private List<URIResolver> resolvers = new ArrayList<>();
+	private final List<URIResolver> resolvers;
 	
 	/**
 	 *
 	 */
 	public SmartNameResolver(String a, Collection<URI> u) {
 		super(a, u);
+		resolvers = new CopyOnWriteArrayList<>();
 		resolvers.add(new DirectUriResolver());
 		resolvers.add(new DnsSrvUriResolver());
+	}
+
+	public void addResolvers(List<URIResolver> resolvers) {
+		this.resolvers.addAll(resolvers);
+	}
+
+	public void delResolvers(List<URIResolver> resolvers) {
+		this.resolvers.removeAll(resolvers);
 	}
 	
 	/**
