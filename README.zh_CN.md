@@ -1,14 +1,14 @@
-Table of Contents([中文说明](./README.zh_CN.md))
+内容索引([Table of Contents](./README.md))  
 =================
 
    * [1. Gadget-etcd](#1-gadget-etcd)
-      * [1.1. Brief introduction](#11-brief-introduction)
-      * [1.2. Requirements](#12-requirements)
-      * [1.3. Maven dependency](#13-maven-dependency)
-      * [1.4. Install from source code](#14-install-from-source-code)
-   * [2. Usage](#2-usage)
+      * [1.1. 简介](#11-简介)
+      * [1.2. 安装前置条件](#12-安装前置条件)
+      * [1.3. Maven依赖](#13-maven依赖)
+      * [1.4. 从源码安装到本地Maven仓库](#14-从源码安装到本地maven仓库)
+   * [2. 用法](#2-用法)
       * [2.1. Client builder](#21-client-builder)
-      * [2.2. Standalone usage](#22-standalone-usage)
+      * [2.2. 单独使用](#22-单独使用)
       * [2.3. DNS SRV](#23-dns-srv)
       * [2.4. Watch](#24-watch)
 
@@ -20,13 +20,13 @@ Table of Contents([中文说明](./README.zh_CN.md))
 [![Javadocs](http://www.javadoc.io/badge/cn.nextop/gedget-etcd.svg)](http://www.javadoc.io/doc/cn.nextop/gedget-etcd)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](https://github.com/nextopcn/gedget-etcd/blob/master/LICENSE)  
   
-An etcd v3 client written by Java.  
+Java实现的etcd v3客户端.  
 
-## 1.2. Requirements  
+## 1.2. 安装前置条件  
 jdk 1.8+  
 maven-3.3.1+  
 
-## 1.3. Maven dependency
+## 1.3. Maven依赖
 
 ```xml  
     <dependency>
@@ -36,13 +36,13 @@ maven-3.3.1+
     </dependency>
 ```
 
-## 1.4. Install from source code  
+## 1.4. 从源码安装到本地Maven仓库  
 
 ``` 
     $mvn clean install -Dmaven.test.skip=true
 ```  
 
-# 2. Usage  
+# 2. 用法  
 ## 2.1. Client builder  
 
 ```java  
@@ -55,7 +55,7 @@ builder.setNameResolverFactory(factory);
 Client client = builder.build("my client");
 ```
 
-## 2.2. Standalone usage  
+## 2.2. 单独使用  
 
 ```java  
 
