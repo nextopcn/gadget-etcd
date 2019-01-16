@@ -163,6 +163,7 @@
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>3.0.0</version>
                         <configuration>
+                            <doclint>none</doclint>
                             <excludePackageNames>cn.nextop.gadget.etcd.grpc.*</excludePackageNames>
                             <encoding>${project.build.sourceEncoding}</encoding>
                         </configuration>
@@ -279,6 +280,7 @@
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>3.0.0</version>
                         <configuration>
+                            <doclint>none</doclint>
                             <excludePackageNames>cn.nextop.gadget.etcd.grpc.*</excludePackageNames>
                             <encoding>${project.build.sourceEncoding}</encoding>
                         </configuration>
@@ -360,6 +362,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
+                    <doclint>none</doclint>
                     <excludePackageNames>cn.nextop.gadget.etcd.grpc.*</excludePackageNames>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
