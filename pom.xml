@@ -204,6 +204,28 @@
                         </configuration>
                     </plugin>
                 </plugins>
+                <resources>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.*</include>
+                        </includes>
+                        <filtering>false</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/proto</directory>
+                        <includes>
+                            <include>**/*.*</include>
+                        </includes>
+                        <filtering>false</filtering>
+                    </resource>
+                </resources>
             </build>
             <distributionManagement>
                 <snapshotRepository>
@@ -281,6 +303,28 @@
                         </executions>
                     </plugin>
                 </plugins>
+                <resources>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.*</include>
+                        </includes>
+                        <filtering>false</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/proto</directory>
+                        <includes>
+                            <include>**/*.*</include>
+                        </includes>
+                        <filtering>false</filtering>
+                    </resource>
+                </resources>
             </build>
         </profile>
     </profiles>
@@ -350,5 +394,27 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/proto</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
