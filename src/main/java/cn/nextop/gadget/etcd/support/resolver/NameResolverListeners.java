@@ -10,7 +10,7 @@ import io.grpc.Status;
 
 /**
  * 
- * @author Jingqqi Xu
+ * @author Jingqi Xu
  */
 public final class NameResolverListeners implements NameResolver.Listener {
 	//
