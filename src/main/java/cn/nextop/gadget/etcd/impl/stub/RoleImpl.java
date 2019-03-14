@@ -18,19 +18,20 @@ import cn.nextop.gadget.etcd.grpc.AuthRoleRevokePermissionRequest;
 import cn.nextop.gadget.etcd.grpc.AuthRoleRevokePermissionResponse;
 import cn.nextop.gadget.etcd.impl.ClientImpl;
 import cn.nextop.gadget.etcd.impl.ClientStub;
+import cn.nextop.gadget.etcd.support.future.CompletableFutureEx;
 
 /**
  * @author Baoyi Chen
  */
 public class RoleImpl extends ClientStub implements Role {
 	//
-	private final AuthGrpc.AuthStub stub;
+	private final AuthGrpc.AuthFutureStub stub;
 	
 	/**
 	 * 
 	 */
 	public RoleImpl(ClientImpl client) {
-		super("role", client); this.stub = create(AuthGrpc::newStub);
+		super("role", client); this.stub = create(AuthGrpc::newFutureStub);
 	}
 	
 	/**
@@ -38,31 +39,31 @@ public class RoleImpl extends ClientStub implements Role {
 	 */
 	@Override
 	public CompletableFuture<AuthRoleAddResponse> add(AuthRoleAddRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.roleAdd(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleAdd(request));
 	}
 	
 	@Override
 	public CompletableFuture<AuthRoleGetResponse> get(AuthRoleGetRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.roleGet(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleGet(request));
 	}
 	
 	@Override
 	public CompletableFuture<AuthRoleListResponse> list(AuthRoleListRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.roleList(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleList(request));
 	}
 	
 	@Override
 	public CompletableFuture<AuthRoleDeleteResponse> delete(AuthRoleDeleteRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.roleDelete(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleDelete(request));
 	}
 	
 	@Override
 	public CompletableFuture<AuthRoleGrantPermissionResponse> grantPermission(AuthRoleGrantPermissionRequest request) {
-		return invoke(() -> { return single(request); }, (observer) -> this.stub.roleGrantPermission(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleGrantPermission(request));
 	}
 	
 	@Override
 	public CompletableFuture<AuthRoleRevokePermissionResponse> revokePermission(AuthRoleRevokePermissionRequest request) {
-		return invoke(() -> { return single(request); }, (observer) -> this.stub.roleRevokePermission(request, observer));
+		return new CompletableFutureEx<>(this.stub.roleRevokePermission(request));
 	}
 }

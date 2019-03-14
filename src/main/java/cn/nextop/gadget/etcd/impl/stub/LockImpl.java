@@ -10,19 +10,20 @@ import cn.nextop.gadget.etcd.grpc.lock.UnlockRequest;
 import cn.nextop.gadget.etcd.grpc.lock.UnlockResponse;
 import cn.nextop.gadget.etcd.impl.ClientImpl;
 import cn.nextop.gadget.etcd.impl.ClientStub;
+import cn.nextop.gadget.etcd.support.future.CompletableFutureEx;
 
 /**
  * @author Baoyi Chen
  */
 public class LockImpl extends ClientStub implements Lock {
 	//
-	private final LockGrpc.LockStub stub;
+	private final LockGrpc.LockFutureStub stub;
 	
 	/**
 	 * 
 	 */
 	public LockImpl(ClientImpl client) {
-		super("lock", client); this.stub = create(LockGrpc::newStub);
+		super("lock", client); this.stub = create(LockGrpc::newFutureStub);
 	}
 	
 	/**
@@ -30,11 +31,11 @@ public class LockImpl extends ClientStub implements Lock {
 	 */
 	@Override
 	public CompletableFuture<LockResponse> lock(LockRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.lock(request, observer));
+		return new CompletableFutureEx<>(this.stub.lock(request));
 	}
 	
 	@Override
 	public CompletableFuture<UnlockResponse> unlock(UnlockRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.unlock(request, observer));
+		return new CompletableFutureEx<>(this.stub.unlock(request));
 	}
 }

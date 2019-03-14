@@ -112,7 +112,7 @@ public class ClientImpl implements Client {
 		return Strings.build(this)
 		.append("id", this.id).toString();
 	}
-
+	
 	@Override
 	public void close() throws Exception {
 		if((this.channel == null)) return;

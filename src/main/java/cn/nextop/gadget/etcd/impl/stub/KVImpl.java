@@ -16,19 +16,20 @@ import cn.nextop.gadget.etcd.grpc.TxnRequest;
 import cn.nextop.gadget.etcd.grpc.TxnResponse;
 import cn.nextop.gadget.etcd.impl.ClientImpl;
 import cn.nextop.gadget.etcd.impl.ClientStub;
+import cn.nextop.gadget.etcd.support.future.CompletableFutureEx;
 
 /**
  * @author Baoyi Chen
  */
 public class KVImpl extends ClientStub implements KV {
 	//
-	private final KVGrpc.KVStub stub;
+	private final KVGrpc.KVFutureStub stub;
 	
 	/**
 	 * 
 	 */
 	public KVImpl(ClientImpl client) {
-		super("kv", client); this.stub = create(KVGrpc::newStub);
+		super("kv", client); this.stub = create(KVGrpc::newFutureStub);
 	}
 	
 	/**
@@ -36,26 +37,26 @@ public class KVImpl extends ClientStub implements KV {
 	 */
 	@Override
 	public CompletableFuture<TxnResponse> txn(TxnRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.txn(request, observer));
+		return new CompletableFutureEx<>(this.stub.txn(request));
 	}
 	
 	@Override
 	public CompletableFuture<PutResponse> put(PutRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.put(request, observer));
+		return new CompletableFutureEx<>(this.stub.put(request));
 	}
 	
 	@Override
 	public CompletableFuture<RangeResponse> range(RangeRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.range(request, observer));
+		return new CompletableFutureEx<>(this.stub.range(request));
 	}
 	
 	@Override
 	public CompletableFuture<CompactionResponse> compact(CompactionRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.compact(request, observer));
+		return new CompletableFutureEx<>(this.stub.compact(request));
 	}
 	
 	@Override
 	public CompletableFuture<DeleteRangeResponse> delete(DeleteRangeRequest request) {
-		return invoke(() -> single(request), observer -> this.stub.deleteRange(request, observer));
+		return new CompletableFutureEx<>(this.stub.deleteRange(request));
 	}
 }
