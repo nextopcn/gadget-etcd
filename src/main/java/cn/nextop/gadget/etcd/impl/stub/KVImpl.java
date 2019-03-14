@@ -37,12 +37,12 @@ public class KVImpl extends ClientStub implements KV {
 	 */
 	@Override
 	public CompletableFuture<TxnResponse> txn(TxnRequest request) {
-		return new CompletableFutureEx<>(this.stub.txn(request));
+		return new CompletableFutureEx<>(this.stub.txn((request)));
 	}
 	
 	@Override
 	public CompletableFuture<PutResponse> put(PutRequest request) {
-		return new CompletableFutureEx<>(this.stub.put(request));
+		return new CompletableFutureEx<>(this.stub.put((request)));
 	}
 	
 	@Override
