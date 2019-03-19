@@ -1,5 +1,6 @@
 package cn.nextop.gadget.etcd.impl;
 
+import static io.grpc.netty.NettyChannelBuilder.forTarget;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import cn.nextop.gadget.etcd.Auth;
@@ -27,6 +28,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.NameResolver;
 import io.grpc.internal.PickFirstLoadBalancerProvider;
 import io.grpc.netty.NettyChannelBuilder;
+import io.netty.channel.EventLoopGroup;
 import io.netty.handler.ssl.SslContext;
 
 /**
@@ -125,6 +127,7 @@ public class ClientImpl implements Client {
 	 */
 	public static class Builder {
 		//
+		private EventLoopGroup group;
 		private SslContext sslContext;
 		private NameResolver.Factory nameResolverFactory;
 		private LoadBalancer.Factory loadBalancerFactory;
@@ -139,6 +142,10 @@ public class ClientImpl implements Client {
 		/**
 		 * 
 		 */
+		public Builder setGroup(EventLoopGroup group) {
+			this.group = group; return this;
+		}
+		
 		public Builder setSslContext(SslContext sslContext) {
 			this.sslContext = sslContext; return this;
 		}
@@ -155,7 +162,8 @@ public class ClientImpl implements Client {
 		 * 
 		 */
 		public ClientImpl build(Object id) {
-			final NettyChannelBuilder builder = NettyChannelBuilder.forTarget("etcd");
+			final NettyChannelBuilder builder = forTarget("etcd");
+			if (this.group != null) builder.eventLoopGroup(group);
 			if (sslContext != null) builder.sslContext(sslContext); else builder.usePlaintext();
 			if ((nameResolverFactory != null)) builder.nameResolverFactory(nameResolverFactory);
 			if ((loadBalancerFactory != null)) builder.loadBalancerFactory(loadBalancerFactory);
