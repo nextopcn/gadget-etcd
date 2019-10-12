@@ -4,7 +4,7 @@
 
     <groupId>cn.nextop</groupId>
     <artifactId>gadget-etcd</artifactId>
-    <version>1.0.0-RC2</version>
+    <version>1.0.0</version>
 
     <name>Gadget Etcd</name>
     <description>Etcd v3 java client</description>
@@ -47,7 +47,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <netty.all.version>4.1.32.Final</netty.all.version>
+        <netty.all.version>4.1.42.Final</netty.all.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <grpc.version>1.17.1</grpc.version>
     </properties>
