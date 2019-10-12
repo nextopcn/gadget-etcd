@@ -31,7 +31,7 @@ maven-3.3.1+
     <dependency>
         <groupId>cn.nextop</groupId>
         <artifactId>gadget-etcd</artifactId>
-        <version>1.0.0-RC2</version>
+        <version>1.0.0</version>
     </dependency>
 ```
 
