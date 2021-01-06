@@ -210,7 +210,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>B01D88BAD0530122B105AA35A5A6D05F25416D88</keyname>
+                            <keyname>6B980C1EDE3EA0F38AD2AF83C3BDD7B9EDEC2512</keyname>
                         </configuration>
                     </plugin>
                 </plugins>
