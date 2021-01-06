@@ -23,11 +23,10 @@ import cn.nextop.gadget.etcd.impl.stub.RoleImpl;
 import cn.nextop.gadget.etcd.impl.stub.UserImpl;
 import cn.nextop.gadget.etcd.impl.stub.WatchImpl;
 import cn.nextop.gadget.etcd.support.util.Strings;
-import io.grpc.LoadBalancer;
 import io.grpc.ManagedChannel;
 import io.grpc.NameResolver;
-import io.grpc.internal.PickFirstLoadBalancerProvider;
 import io.grpc.netty.NettyChannelBuilder;
+import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.handler.ssl.SslContext;
 
@@ -129,15 +128,8 @@ public class ClientImpl implements Client {
 		//
 		private EventLoopGroup group;
 		private SslContext sslContext;
+		private Class<? extends Channel> channelType;
 		private NameResolver.Factory nameResolverFactory;
-		private LoadBalancer.Factory loadBalancerFactory;
-		
-		/**
-		 * 
-		 */
-		private Builder() {
-			loadBalancerFactory = new PickFirstLoadBalancerProvider();
-		}
 		
 		/**
 		 * 
@@ -146,27 +138,28 @@ public class ClientImpl implements Client {
 			this.group = group; return this;
 		}
 		
-		public Builder setSslContext(SslContext sslContext) {
-			this.sslContext = sslContext; return this;
+		public Builder setSslContext(SslContext context) {
+			this.sslContext = context; return this;
+		}
+		
+		public Builder setChannelType (Class<? extends Channel> type) {
+			this.channelType = type; return this;
 		}
 		
 		public Builder setNameResolverFactory(NameResolver.Factory v) {
 			this.nameResolverFactory = v; return this;
 		}
 		
-		public Builder setLoadBalancerFactory(LoadBalancer.Factory v) {
-			this.loadBalancerFactory = v; return this;
-		}
-		
 		/**
 		 * 
 		 */
+		@SuppressWarnings("deprecation")
 		public ClientImpl build(Object id) {
 			final NettyChannelBuilder builder = forTarget("etcd");
 			if (this.group != null) builder.eventLoopGroup(group);
+			if (this.channelType != null) builder.channelType(channelType);
 			if (sslContext != null) builder.sslContext(sslContext); else builder.usePlaintext();
 			if ((nameResolverFactory != null)) builder.nameResolverFactory(nameResolverFactory);
-			if ((loadBalancerFactory != null)) builder.loadBalancerFactory(loadBalancerFactory);
 			ClientImpl r = new ClientImpl(); r.id = id; r.channel = builder.build(); return (r);
 		}
 	}
